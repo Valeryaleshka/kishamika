@@ -1,0 +1,12 @@
+<ul>
+  @for (item of menu(); track item.title) {
+    <button
+      nz-button
+      nzGhost
+      [routerLink]="item.link"
+      routerLinkActive="active"
+    >
+      {{ item.title }}
+    </button>
+  }
+</ul>

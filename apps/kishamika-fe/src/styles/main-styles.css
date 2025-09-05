@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: blue;
+}
+
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.dn {
+  display: none;
+}
+
+.droparea-hover {
+  cursor: pointer;
+}

@@ -1,0 +1,65 @@
+<app-content-wrapper centerContent>
+  @if (!preview) {
+    <div class="file-drop" droparea (click)="imgFileInput.click()">
+      <b>Choose a file</b>&nbsp;or drag it here
+      <input
+        accept="image/png"
+        hidden
+        type="file"
+        #imgFileInput
+        (change)="updateImageDisplay($event)"
+      />
+    </div>
+  }
+
+  @if (preview) {
+    <div class="block-wrapper">
+      <div class="image-wrapper">
+        <div class="image-container">
+          <img class="image-preview" [src]="preview" alt="" />
+          <div>Original Size {{ originalSize | number: "1.0-2" }} MB</div>
+          <button nz-button nzType="primary" (click)="preview = null">
+            Delete
+          </button>
+          <button nz-button (click)="compressFile()">Compress</button>
+          @if (compressed) {
+            <img class="image-preview" [src]="compressed" alt="" />
+            <div>Compressed Size {{ compressedSize | number: "1.0-2" }} MB</div>
+            <button nz-button (click)="download()">Download</button>
+          }
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <nz-form-item>
+          <nz-form-label nzFor="name">Max Size MB</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              type="number"
+              min="0"
+              max="100"
+              [(ngModel)]="maxSize"
+              id="name"
+              placeholder="Max Size"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzFor="name">Quality rate ( 1 - 100 )</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              type="number"
+              min="1"
+              max="100"
+              [(ngModel)]="compressorQuality"
+              id="name"
+              placeholder="Quality"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  }
+</app-content-wrapper>

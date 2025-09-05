@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  padding: 20px;
+  width: 100%;
+  background-color: var(--main-color);
+  color: white;
+  z-index: 999;
+  flex-shrink: 0;
+
+  .container {
+    justify-content: space-between;
+    width: 100%;
+  }
+}

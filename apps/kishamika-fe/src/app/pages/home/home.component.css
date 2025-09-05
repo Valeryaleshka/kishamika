@@ -1,0 +1,45 @@
+.image-container {
+  display: flex;
+  max-width: 500px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.block-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.image-preview {
+  max-width: 500px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.sidebar {
+  flex: 0 0 300px;
+  width: 300px;
+}
+
+.file-drop {
+  border: 1px dashed var(--main-color);
+  border-radius: 10px;
+  background-color: var(--main-color-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 300px;
+}
