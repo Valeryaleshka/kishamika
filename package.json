@@ -1,0 +1,30 @@
+{
+  "name": "kishamika",
+  "version": "0.0.2",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"yarn dev:be\" \"yarn dev:fe\"",
+    "dev:fe": "yarn workspace kishamika-fe start",
+    "dev:be": "yarn workspace kishamika-be start",
+    "build": "yarn build:be && yarn build:fe",
+    "build:be": "yarn workspace kishamika-be build",
+    "build:fe": "yarn workspace kishamika-fe build",
+    "build:prod": "yarn build:be:prod && yarn build:fe:prod",
+    "build:be:prod": "yarn workspace kishamika-be build:prod",
+    "build:fe:prod": "yarn workspace kishamika-fe build --configuration production",
+    "start:be": "yarn workspace kishamika-be start:prod",
+    "lint:fe": "yarn workspace kishamika-fe lint:fix",
+    "prisma:generate": "yarn workspace kishamika-be prisma:generate",
+    "prisma:migrate": "yarn workspace kishamika-be prisma:migrate",
+    "render-build": "yarn install && yarn prisma:generate && yarn build:prod",
+    "clean": "yarn workspaces foreach run clean"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "typescript": "~5.8.3",
+    "dotenv-cli": "^7.3.0"
+  }
+}

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: kishamika-backend
+    env: node
+    buildCommand: npm run render-build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
+
+  - type: web
+    name: kishamika-frontend
+    env: static
+    buildCommand: cd apps/kishamika-fe && npm run build
+    staticPublishPath: ./apps/kishamika-fe/dist/kishamika-fe
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true

@@ -1,0 +1,31 @@
+{
+  "name": "kishamika-be",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/kishamika-be",
+        "main": "apps/kishamika-be/src/main.ts",
+        "tsConfig": "apps/kishamika-be/tsconfig.app.json",
+        "assets": ["apps/kishamika-be/src/assets"],
+        "webpackConfig": "apps/kishamika-be/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/kishamika-be/src/environments/environment.ts",
+              "with": "apps/kishamika-be/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
