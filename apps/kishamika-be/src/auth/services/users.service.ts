@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import {DatabaseService} from "../../database/database.service";
-import {SignInpData} from "../auth.types";
+import { DatabaseService } from '../../database/database.service';
+import { SignInpData } from '../auth.types';
 
 export type User = {
   id: number;
@@ -54,6 +54,7 @@ export class UsersService {
       name: user.name,
     };
 
+    console.log('Created user', newUser);
     const createdUser = await this.databaseService.user.create({
       data: newUser,
     });

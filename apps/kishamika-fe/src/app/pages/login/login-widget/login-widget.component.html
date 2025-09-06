@@ -1,5 +1,8 @@
 @if (currentUser()) {
-  <button nz-button nzGhost (click)="logout()">Logout</button>
+  <div centerContent>
+    <div class="header-text">Hello, {{currentUser()?.name ?? currentUser()?.email}}</div>
+    <button nz-button nzGhost (click)="logout()">Logout</button>
+  </div>
 } @else {
   <app-header-menu [menu]="menuItems"></app-header-menu>
 }

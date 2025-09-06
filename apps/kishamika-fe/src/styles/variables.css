@@ -1,5 +1,17 @@
 :root {
   --header-height: 100px;
+}
+
+.theme-light {
   --main-color: #439fb0;
   --main-color-light: #90e0ef;
+  --background: #ffffff;
+  --text-color: #000000;
+}
+
+.theme-dark {
+  --main-color: #1a2a2f;
+  --main-color-light: #264653;
+  --background: #1e1e1e;;
+  --text-color: #ffffff;
 }

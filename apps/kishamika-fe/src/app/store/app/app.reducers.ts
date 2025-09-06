@@ -1,13 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { setTheme, toggleTheme } from './app.actions';
+import { setTheme, setUser, toggleTheme } from './app.actions';
+import { User } from '../../../../../kishamika-be/src/auth/services/users.service';
+
+export type themeType = 'light' | 'dark';
 
 export interface ThemeState {
-  theme: 'light' | 'dark';
+  theme: themeType;
+  user: User | null;
 }
 
 export const initialState: ThemeState = {
   theme: 'dark',
+  user: null,
 };
 
 export const appReducer = createReducer(
@@ -15,6 +20,10 @@ export const appReducer = createReducer(
   on(setTheme, (state, { theme }) => ({ ...state, theme })),
   on(toggleTheme, (state) => ({
     ...state,
-    theme: state.theme === 'light' ? 'dark' : 'light',
+    theme: state.theme === 'light' ? 'dark' : 'light' as themeType,
   })),
+  on(setUser, (state, { user }) => ({
+    ...state,
+    user: user,
+  }))
 );

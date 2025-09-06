@@ -3,3 +3,7 @@ button {
   display: flex;
   gap: 10px;
 }
+
+.header-text {
+  color: var(--text-color);
+}
