@@ -26,7 +26,11 @@ export class AuthService {
       if (!user) {
         return null;
       }
-      return { userId: decoded.sub, username: decoded.username };
+      return {
+        userId: user.id,
+        name: user.name ?? user.email,
+        useremail: user.email,
+      };
     } catch (_) {
       return null;
     }
@@ -48,6 +52,7 @@ export class AuthService {
       const isMatch = await bcrypt.compare(input.password, user.password);
       if (isMatch) {
         return {
+          name: user.name ?? user.email,
           userId: user.id,
           email: user.email,
         };
@@ -94,7 +99,8 @@ export class AuthService {
 
     return {
       userId: user.userId,
-      username: user.email,
+      useremail: user.email,
+      name: user.name ?? user.email,
     };
   }
 }

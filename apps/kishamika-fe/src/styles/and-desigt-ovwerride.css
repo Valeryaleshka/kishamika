@@ -1,0 +1,28 @@
+/*.theme-light {*/
+/*  .ant-btn.ant-btn-background-ghost {*/
+/*    background-color: var(--background);*/
+/*  }*/
+/*}*/
+
+/*.theme-dark {*/
+/*  .ant-btn.ant-btn-background-ghost {*/
+/*    background-color: var(--background);*/
+/*  }*/
+/*}*/
+
+.ant-btn.ant-btn-background-ghost {
+  background-color: var(--background);
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+.ant-btn.ant-btn-background-ghost:hover {
+  background-color: var(--background);
+  /*opacity: 0.5;*/
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+.ant-form-item-label > label{
+  color: var(--text-color);
+}
