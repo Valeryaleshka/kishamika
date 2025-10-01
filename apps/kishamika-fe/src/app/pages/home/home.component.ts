@@ -66,6 +66,16 @@ export class HomeComponent {
     }
   }
 
+  updateImageDisplayFile(files: FileList): void {
+
+    if (files.length > 0) {
+      this.currentFile = files[0];
+
+      this.preview = URL.createObjectURL(this.currentFile);
+      this.originalSize = this.currentFile.size / 1024 / 1024;
+    }
+  }
+
   async compressFile() {
     if (this.currentFile && this.preview && this.availableForCompress) {
       this.availableForCompress = false;

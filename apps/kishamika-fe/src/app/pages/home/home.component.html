@@ -1,6 +1,6 @@
 <app-content-wrapper centerContent>
   @if (!preview) {
-    <div class="file-drop" droparea (click)="imgFileInput.click()">
+    <div class="file-drop" droparea (click)="imgFileInput.click()" (dropped)="updateImageDisplayFile($event)">
       <b>Choose a file</b>&nbsp;or drag it here
       <input
         accept="image/png"
