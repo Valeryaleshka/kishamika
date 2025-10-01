@@ -26,6 +26,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@ngrx/effects": "^20.0.1",
     "@ngrx/store": "^20.0.0",
     "@ngrx/store-devtools": "^20.0.0",
     "browser-image-compression": "^2.0.2",

@@ -6,6 +6,7 @@ import { UserService } from '../../../services/user/user.service';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../../store/app/app.selectors';
 import { CenterDirective } from '../../../derectives/center-content.directive';
+import { ThemeState } from '../../../store/app/app.reducers';
 
 @Component({
   selector: 'app-login-widget',
@@ -16,7 +17,7 @@ import { CenterDirective } from '../../../derectives/center-content.directive';
 })
 export class LoginWidgetComponent {
   private userService = inject(UserService);
-  private store = inject(Store);
+  private store = inject(Store<ThemeState>);
   protected currentUser = computed(this.store.selectSignal(selectUser));
 
   menuItems = [

@@ -17,13 +17,13 @@ export const initialState: ThemeState = {
 
 export const appReducer = createReducer(
   initialState,
-  on(setTheme, (state, { theme }) => ({ ...state, theme })),
+  on(setTheme, (state, action) => ({ ...state, theme: action.theme })),
   on(toggleTheme, (state) => ({
     ...state,
     theme: state.theme === 'light' ? 'dark' : 'light' as themeType,
   })),
-  on(setUser, (state, { user }) => ({
+  on(setUser, (state, action) => ({
     ...state,
-    user: user,
+    user: action.user,
   }))
 );
