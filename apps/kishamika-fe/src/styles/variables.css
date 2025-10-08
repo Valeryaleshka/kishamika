@@ -1,17 +1,14 @@
 :root {
   --header-height: 100px;
-}
-
-.theme-light {
+  --background-color: white;
+  --text-color: black;
   --main-color: #439fb0;
   --main-color-light: #90e0ef;
-  --background: #ffffff;
-  --text-color: #000000;
 }
 
 .theme-dark {
-  --main-color: #1a2a2f;
-  --main-color-light: #264653;
-  --background: #1e1e1e;;
-  --text-color: #ffffff;
+  --background-color: #020506;
+  --main-color: #122c30;
+  --main-color-light: #23525b;
+  --text-color: white;
 }
