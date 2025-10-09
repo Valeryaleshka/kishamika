@@ -24,7 +24,7 @@ export class UserService {
   private destroyRef = inject(DestroyRef);
 
   public loginUser(user: User ) {
-    this.store.dispatch(setUser({ user }));
+    this.store.dispatch(setUser({ user: user }));
   }
 
   public logoutUser() {
