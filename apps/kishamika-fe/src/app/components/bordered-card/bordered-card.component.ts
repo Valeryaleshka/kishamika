@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   imports: [],
   standalone: true,
   templateUrl: './bordered-card.component.html',
-  styleUrl: './bordered-card.component.css',
+  styleUrl: './bordered-card.component.less',
 })
 export class BorderedCardComponent {
 }

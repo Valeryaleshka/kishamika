@@ -12,7 +12,7 @@ import { CenterDirective } from '../../../derectives/center-content.directive';
   standalone: true,
   imports: [HeaderMenuComponent, NzButtonComponent, CenterDirective],
   templateUrl: './login-widget.component.html',
-  styleUrl: './login-widget.component.css',
+  styleUrl: './login-widget.component.less',
 })
 export class LoginWidgetComponent {
   private userService = inject(UserService);

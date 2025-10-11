@@ -13,7 +13,7 @@ import { ISelect } from '../app-select/app-select.types';
   selector: 'app-footer',
   imports: [FormsModule, RouterLink, AsyncPipe, AppSelectComponent],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css',
+  styleUrl: './footer.component.less',
 })
 export class FooterComponent {
   store = inject(Store);

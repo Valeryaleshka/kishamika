@@ -7,6 +7,6 @@ import { CenterDirective } from '../../derectives/center-content.directive';
   selector: 'app-about',
   imports: [CenterDirective, ContentWrapperComponent],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.css',
+  styleUrl: './about.component.less',
 })
 export class AboutComponent {}

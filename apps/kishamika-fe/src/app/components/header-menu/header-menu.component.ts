@@ -9,7 +9,7 @@ import { HeaderMenu } from './header-input.interface';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, NzButtonComponent],
   templateUrl: './header-menu.component.html',
-  styleUrl: './header-menu.component.css',
+  styleUrl: './header-menu.component.less',
 })
 export class HeaderMenuComponent {
   menu: InputSignal<HeaderMenu[]> = input<HeaderMenu[]>([]);

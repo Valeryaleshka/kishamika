@@ -9,7 +9,7 @@ import { ISelect } from './app-select.types';
   imports: [FormsModule],
   standalone: true,
   templateUrl: './app-select.component.html',
-  styleUrl: './app-select.component.css',
+  styleUrl: './app-select.component.less',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
