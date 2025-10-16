@@ -12,6 +12,7 @@
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "build:prod": "ng build --configuration production",
+    "build:github": "ng build --configuration production --base-href 'https://valeryaleshka.github.io/kishamika-monorep/'",
     "clean": "rm -rf dist"
   },
   "private": true,

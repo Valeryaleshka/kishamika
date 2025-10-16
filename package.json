@@ -15,6 +15,8 @@
     "build:prod": "yarn build:be:prod && yarn build:fe:prod",
     "build:be:prod": "yarn workspace kishamika-be build:prod",
     "build:fe:prod": "yarn workspace kishamika-fe build --configuration production",
+    "github": "yarn workspace kishamika-fe build:github",
+    "github-deploy": "npx angular-cli-ghpages --dir=apps/kishamika-fe/dist/kika-project/browser --no-silent",
     "start:be": "yarn workspace kishamika-be start:prod",
     "lint:fe": "yarn workspace kishamika-fe lint:fix",
     "prisma:generate": "yarn workspace kishamika-be prisma:generate",
