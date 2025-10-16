@@ -11,7 +11,7 @@ import { selectTheme } from './store/app/app.selectors';
   imports: [RouterOutlet, AsyncPipe],
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.less',
 })
 export class AppComponent {
   private store = inject(Store);

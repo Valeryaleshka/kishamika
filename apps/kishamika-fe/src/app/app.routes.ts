@@ -11,11 +11,11 @@ export const routes: Routes = [
       userData: UserResolver,
     },
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/home' },
+      { path: '', pathMatch: 'full', redirectTo: '/compress' },
       {
-        path: 'home',
+        path: 'compress',
         loadComponent: () =>
-          import('./pages/home/home.component').then((m) => m.HomeComponent),
+          import('./pages/compress/compress.component').then((m) => m.CompressComponent),
       },
       {
         path: 'about',

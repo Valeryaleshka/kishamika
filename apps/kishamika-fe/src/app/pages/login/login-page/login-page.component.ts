@@ -39,7 +39,7 @@ import { matchValidator } from '../../../shared/common/helpers/form.helper';
     NzInputDirective,
   ],
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css',
+  styleUrl: './login-page.component.less',
 })
 export class LoginPageComponent {
   private api = inject(ApiService);

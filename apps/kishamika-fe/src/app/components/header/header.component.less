@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  background-color: var(--main-color);
+}
+
+@media (min-width: 600px) {
+  :host {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

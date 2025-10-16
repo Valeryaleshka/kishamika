@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { Response } from 'express';
 import { CustomRequest } from './guards/auth.guard';
-import {UserForCreate, UsersService} from "./services/users.service";
+import { UserForCreate, UsersService } from './services/users.service';
 
 @Injectable()
 export class AuthService {

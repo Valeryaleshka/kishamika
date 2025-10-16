@@ -8,13 +8,13 @@ import { HeaderMenuComponent } from '../header-menu/header-menu.component';
   standalone: true,
   imports: [LoginWidgetComponent, HeaderMenuComponent],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrls: ['./header.component.less'],
 })
 export class HeaderComponent {
 
   menuItems = computed(() => {
     return [
-      { title: 'Home', link: '/home' },
+      { title: 'Home', link: '/compress' },
     ];
   });
 }

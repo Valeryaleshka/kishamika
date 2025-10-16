@@ -2,44 +2,36 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
-
-import { setTheme } from '../../store/app/app.actions';
-import { ThemeState } from '../../store/app/app.reducers';
+import { Observable } from 'rxjs';
 import { selectTheme } from '../../store/app/app.selectors';
-
+import { AsyncPipe } from '@angular/common';
+import { setTheme } from '../../store/app/app.actions';
+import { AppSelectComponent } from '../app-select/app-select.component';
+import { ISelect } from '../app-select/app-select.types';
 
 @Component({
   selector: 'app-footer',
-  imports: [
-    FormsModule,
-    RouterLink,
-    NzSelectComponent,
-    NzOptionComponent,
-  ],
+  imports: [FormsModule, RouterLink, AsyncPipe, AppSelectComponent],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css',
+  styleUrl: './footer.component.less',
 })
 export class FooterComponent {
-  private store = inject(Store<{ theme: ThemeState }>);
-  theme = this.store.selectSignal(selectTheme);
+  store = inject(Store);
 
-  themes = [
+  theme$: Observable<'light' | 'dark'> = this.store.select(selectTheme);
+
+  items: ISelect<string>[] = [
     {
-      label: 'Light',
+      title: 'Light',
       value: 'light',
     },
     {
-      label: 'Dark',
+      title: 'Dark',
       value: 'dark',
     },
   ];
 
-  click() {
-    console.log('clicked', this.theme());
-  }
-
-  onThemeChange(value: 'light' | 'dark') {
-    this.store.dispatch(setTheme({ theme: value }));
+  handleTheme(event: 'light' | 'dark' | null) {
+    this.store.dispatch(setTheme({ theme: event }));
   }
 }

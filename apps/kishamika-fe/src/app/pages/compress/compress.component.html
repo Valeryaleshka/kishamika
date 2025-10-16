@@ -1,30 +1,46 @@
 <app-content-wrapper centerContent>
-  @if (!preview) {
+  <nz-spin [nzSpinning]="compressInProgress" nzTip="Loading...">
+  @if (!originalFiles) {
     <div class="file-drop" droparea (click)="imgFileInput.click()">
       <b>Choose a file</b>&nbsp;or drag it here
       <input
         accept="image/png"
         hidden
         type="file"
+        multiple
         #imgFileInput
-        (change)="updateImageDisplay($event)"
+        (change)="uploadFiles($event)"
       />
     </div>
   }
 
-  @if (preview) {
+  @if (originalFiles) {
     <div class="block-wrapper">
       <div class="image-wrapper">
         <div class="image-container">
-          <img class="image-preview" [src]="preview" alt="" />
-          <div>Original Size {{ originalSize | number: "1.0-2" }} MB</div>
-          <button nz-button nzType="primary" (click)="preview = null">
+          @for(item of originalFiles; track item.name){
+            <div>
+              <img class="image-preview" [src]="item | fileSrc" alt="Uploaded Image" />
+              <div>Original Size {{ item | fileSize | number: "1.0-2" }} MB</div>
+            </div>
+          }
+
+          <button nz-button nzType="primary" (click)="cleanFiles()">
             Delete
           </button>
-          <button nz-button (click)="compressFile()">Compress</button>
-          @if (compressed) {
-            <img class="image-preview" [src]="compressed" alt="" />
-            <div>Compressed Size {{ compressedSize | number: "1.0-2" }} MB</div>
+
+          <button nz-button (click)="compress()">Compress</button>
+
+          @if (compressedFiles) {
+            @for(item of compressedFiles; track item.compressedUrl){
+              <div>
+                <img class="image-preview" [src]="item.compressedUrl" alt="Uploaded Image" />
+                <div>Original Size {{ item.compressedFile | fileSize | number: "1.0-2" }} MB</div>
+              </div>
+              @if(compressedFiles.length > 1){
+                <button nz-button (click)="downloadSingle(item)">Download Single</button>
+              }
+            }
             <button nz-button (click)="download()">Download</button>
           }
         </div>
@@ -39,7 +55,7 @@
               type="number"
               min="0"
               max="100"
-              [(ngModel)]="maxSize"
+              [(ngModel)]="compressorOptions.maxSize"
               id="name"
               placeholder="Max Size"
             />
@@ -53,7 +69,7 @@
               type="number"
               min="1"
               max="100"
-              [(ngModel)]="compressorQuality"
+              [(ngModel)]="compressorOptions.compressorQuality"
               id="name"
               placeholder="Quality"
             />
@@ -62,4 +78,5 @@
       </div>
     </div>
   }
+  </nz-spin>
 </app-content-wrapper>

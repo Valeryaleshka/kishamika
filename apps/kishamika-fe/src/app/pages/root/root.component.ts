@@ -8,6 +8,6 @@ import { HeaderComponent } from '../../components/header/header.component';
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './root.component.html',
-  styleUrl: './root.component.css',
+  styleUrl: './root.component.less',
 })
 export class RootComponent {}

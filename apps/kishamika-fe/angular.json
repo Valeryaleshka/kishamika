@@ -22,12 +22,17 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets/"
               }
             ],
             "styles": [
               "../../node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "../../node_modules/normalize.css/normalize.css",
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": [],
             "webWorkerTsConfig": "tsconfig.worker.json"
@@ -90,11 +95,16 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets/"
               }
             ],
             "styles": [
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": [],
             "webWorkerTsConfig": "tsconfig.worker.json"
@@ -105,7 +115,8 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "type": "component"
+      "type": "component",
+      "style": "less"
     },
     "@schematics/angular:directive": {
       "type": "directive"

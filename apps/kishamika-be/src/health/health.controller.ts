@@ -3,11 +3,11 @@ import { HealthCheck, HealthCheckService } from '@nestjs/terminus';
 
 @Controller('health')
 export class HealthController {
-    constructor(private health: HealthCheckService) {}
+  constructor(private health: HealthCheckService) {}
 
-    @Get()
-    @HealthCheck()
-    check() {
-        return { status: 'ok', timestamp: new Date().toISOString() };
-    }
+  @Get()
+  @HealthCheck()
+  check() {
+    return { status: 'ok', timestamp: new Date().toISOString() };
+  }
 }

@@ -1,0 +1,13 @@
+<select
+  [ngModel]="value"
+  (ngModelChange)="onChange($event)"
+  [disabled]="disabled"
+>
+  @for (item of options; track trackByFn($index, item)) {
+    <option
+      [value]="item.value"
+    >
+      {{ item.title }}
+    </option>
+  }
+</select>

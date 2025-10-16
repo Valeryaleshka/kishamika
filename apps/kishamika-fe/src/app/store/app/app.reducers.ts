@@ -17,7 +17,7 @@ export const initialState: ThemeState = {
 
 export const appReducer = createReducer(
   initialState,
-  on(setTheme, (state, { theme }) => ({ ...state, theme })),
+  on(setTheme, (state, { theme }) => ({ ...state, theme: theme ?? 'light' })),
   on(toggleTheme, (state) => ({
     ...state,
     theme: state.theme === 'light' ? 'dark' : 'light' as themeType,

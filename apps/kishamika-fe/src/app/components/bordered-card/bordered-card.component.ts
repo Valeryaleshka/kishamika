@@ -4,10 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-bordered-card',
   imports: [],
   standalone: true,
-  providers: [{ provide: 'TOKEN', useValue: { title: 'new title' } }],
   templateUrl: './bordered-card.component.html',
-  styleUrl: './bordered-card.component.css',
+  styleUrl: './bordered-card.component.less',
 })
 export class BorderedCardComponent {
-  public title = 'Bordered Card';
 }
