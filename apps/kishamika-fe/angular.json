@@ -39,7 +39,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/",
+              "baseHref": "/kishamika/",
               "budgets": [
                 {
                   "type": "initial",
