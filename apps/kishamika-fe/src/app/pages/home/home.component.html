@@ -9,7 +9,7 @@
         type="file"
         multiple
         #imgFileInput
-        (change)="updateImageDisplay($event)"
+        (change)="uploadFiles($event)"
       />
     </div>
   }
@@ -55,7 +55,7 @@
               type="number"
               min="0"
               max="100"
-              [(ngModel)]="maxSize"
+              [(ngModel)]="compressorOptions.maxSize"
               id="name"
               placeholder="Max Size"
             />
@@ -69,7 +69,7 @@
               type="number"
               min="1"
               max="100"
-              [(ngModel)]="compressorQuality"
+              [(ngModel)]="compressorOptions.compressorQuality"
               id="name"
               placeholder="Quality"
             />

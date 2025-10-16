@@ -1,7 +1,7 @@
 import {DecimalPipe} from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import imageCompression, { Options } from 'browser-image-compression';
+import { Options} from 'browser-image-compression';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
 import {
@@ -11,15 +11,15 @@ import {
 } from 'ng-zorro-antd/form';
 import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
 import { NzInputDirective } from 'ng-zorro-antd/input';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzSpinComponent } from 'ng-zorro-antd/spin';
 
+import {CompressedFile, CompressorOptions} from './home.interfaces';
 import {AppImageSizePipe, AppImageSrcPipe} from './home.pipe';
 import { HomeService } from './hone.service';
 import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
 import { CenterDirective } from '../../derectives/center-content.directive';
 import { DropareaDirective } from '../../derectives/droparea.directive';
-import {CompressedFile} from './home.interfaces';
-import { NzSpinComponent } from 'ng-zorro-antd/spin';
+
 
 @Component({
   selector: 'app-home',
@@ -47,8 +47,6 @@ import { NzSpinComponent } from 'ng-zorro-antd/spin';
   providers: [HomeService],
 })
 export class HomeComponent {
-  private imageCompress = imageCompression;
-  private messageService = inject(NzMessageService);
   private homeService = inject(HomeService);
 
   protected originalFiles: FileList | null = null;
@@ -56,10 +54,13 @@ export class HomeComponent {
 
   protected compressInProgress = false;
 
-  maxSize: number = 1;
-  compressorQuality: number = 50;
+  protected compressorOptions: CompressorOptions = {
+    maxSize: 1,
+    compressorQuality: 50,
+  }
 
-  updateImageDisplay(event: Event): void {
+
+  uploadFiles(event: Event): void {
     const input = event.target as HTMLInputElement;
 
     if (input.files && input.files.length > 0) {
@@ -72,10 +73,10 @@ export class HomeComponent {
       this.compressInProgress = true;
 
       const options: Options = {
-        initialQuality: this.compressorQuality / 100,
+        initialQuality: this.compressorOptions.compressorQuality / 100,
         alwaysKeepResolution: false,
         useWebWorker: true,
-        maxSizeMB: this.maxSize,
+        maxSizeMB: this.compressorOptions.maxSize,
       };
 
       this.compressedFiles = await this.homeService.compressFile(
