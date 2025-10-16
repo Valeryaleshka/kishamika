@@ -1,10 +1,40 @@
 <app-content-wrapper centerContent>
-  <p>about works!</p>
-  <div>
-    <div>
-      <div>
-        <div>lalala</div>
-      </div>
+  <section class="about-page">
+    <h1 class="title">About This Project</h1>
+
+    <p class="lead">
+      This project is a full-stack web application built with modern, open-source
+      technologies. It provides image compression and related features in the
+      frontend and a NestJS backend with PostgreSQL for persistent storage.
+    </p>
+
+    <div class="tech-list">
+      <article class="tech-card">
+        <div class="tech-media">
+        <h2>Angular</h2><img ngSrc="assets/icons/angular.svg" alt="Angular" width="20" height="20">
+        </div>
+        <p>Frontend framework used for the UI and client-side logic.</p>
+      </article>
+
+      <article class="tech-card">
+        <div class="tech-media">
+        <h2>NestJS</h2><img ngSrc="assets/icons/nest.svg" alt="Angular" width="20" height="20">
+        </div>
+        <p>Backend framework used to build the REST API and handle business logic.</p>
+      </article>
+
+      <article class="tech-card">
+        <div class="tech-media">
+          <h2>PostgreSQL</h2>
+          <img ngSrc="assets/icons/postgre.svg" alt="Angular" width="20" height="20">
+        </div>
+
+        <p>Relational database used for storing application data reliably.</p>
+      </article>
     </div>
-  </div>
+
+    <footer class="about-footer">
+      <small>Built with care — October 2025</small>
+    </footer>
+  </section>
 </app-content-wrapper>

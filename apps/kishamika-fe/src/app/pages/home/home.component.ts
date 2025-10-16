@@ -1,4 +1,4 @@
-import { DecimalPipe } from '@angular/common';
+import {DecimalPipe} from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import imageCompression, { Options } from 'browser-image-compression';
@@ -13,16 +13,19 @@ import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
+import {AppImageSizePipe, AppImageSrcPipe} from './home.pipe';
+import { HomeService } from './hone.service';
 import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
 import { CenterDirective } from '../../derectives/center-content.directive';
 import { DropareaDirective } from '../../derectives/droparea.directive';
+import {CompressedFile} from './home.interfaces';
+import { NzSpinComponent } from 'ng-zorro-antd/spin';
 
 @Component({
   selector: 'app-home',
   imports: [
     ContentWrapperComponent,
     CenterDirective,
-
     FormsModule,
     NzColDirective,
     NzFormControlComponent,
@@ -35,73 +38,67 @@ import { DropareaDirective } from '../../derectives/droparea.directive';
     NzWaveDirective,
     ReactiveFormsModule,
     DropareaDirective,
+    AppImageSrcPipe,
+    AppImageSizePipe,
+    NzSpinComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
+  providers: [HomeService],
 })
 export class HomeComponent {
   private imageCompress = imageCompression;
   private messageService = inject(NzMessageService);
+  private homeService = inject(HomeService);
 
-  protected preview: string | null = null;
-  protected compressed: string | null = null;
-  protected compressedFile: any;
-  protected originalSize: number | null = null;
-  protected compressedSize: number | null = null;
+  protected originalFiles: FileList | null = null;
+  protected compressedFiles: CompressedFile[] | null = null;
+
+  protected compressInProgress = false;
 
   maxSize: number = 1;
   compressorQuality: number = 50;
-
-  currentFile: File | null = null;
-  availableForCompress = true;
 
   updateImageDisplay(event: Event): void {
     const input = event.target as HTMLInputElement;
 
     if (input.files && input.files.length > 0) {
-      this.currentFile = input.files[0];
-
-      this.preview = URL.createObjectURL(this.currentFile);
-      this.originalSize = this.currentFile.size / 1024 / 1024;
+      this.originalFiles = input.files;
     }
   }
 
-  async compressFile() {
-    if (this.currentFile && this.preview && this.availableForCompress) {
-      this.availableForCompress = false;
+  async compress() {
+    if (this.originalFiles && !this.compressInProgress) {
+      this.compressInProgress = true;
 
       const options: Options = {
         initialQuality: this.compressorQuality / 100,
         alwaysKeepResolution: false,
         useWebWorker: true,
-        // onProgress: this.consolelogim,
         maxSizeMB: this.maxSize,
       };
 
-      this.imageCompress(this.currentFile, options)
-        .then((compressedImage: any) => {
-          this.compressedFile = compressedImage;
-          this.compressedSize = this.compressedFile.size / 1024 / 1024;
-          this.imageCompress
-            .getDataUrlFromFile(this.compressedFile)
-            .then((url) => {
-              this.compressed = url;
-              this.messageService.success('Successfully compressed');
-            });
-        })
-        .finally(() => {
-          this.availableForCompress = true;
-        });
+      this.compressedFiles = await this.homeService.compressFile(
+        this.originalFiles,
+        options,
+      );
+
+      this.compressInProgress = false;
     }
   }
 
+  cleanFiles(){
+    this.originalFiles = null;
+    this.compressedFiles = null;
+  }
+
   download() {
-    if (this.compressed) {
-      const link = document.createElement('a');
-      link.setAttribute('type', 'hidden');
-      link.setAttribute('download', '');
-      link.href = this.compressed;
-      link.click();
+    if (this.compressedFiles) {
+      this.homeService.downloadFile(this.compressedFiles).then();
     }
+  }
+
+  downloadSingle(file: CompressedFile){
+    this.homeService.downloadFile([file]).then();
   }
 }
