@@ -13,16 +13,16 @@ import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { NzSpinComponent } from 'ng-zorro-antd/spin';
 
-import {CompressedFile, CompressorOptions} from './home.interfaces';
-import {AppImageSizePipe, AppImageSrcPipe} from './home.pipe';
-import { HomeService } from './hone.service';
+import {CompressedFile, CompressorOptions} from './compress.interfaces';
+import {AppImageSizePipe, AppImageSrcPipe} from './compress.pipe';
+import { CompressService } from './compress.service';
 import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
 import { CenterDirective } from '../../derectives/center-content.directive';
 import { DropareaDirective } from '../../derectives/droparea.directive';
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-compress',
   imports: [
     ContentWrapperComponent,
     CenterDirective,
@@ -42,12 +42,12 @@ import { DropareaDirective } from '../../derectives/droparea.directive';
     AppImageSizePipe,
     NzSpinComponent,
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
-  providers: [HomeService],
+  templateUrl: './compress.component.html',
+  styleUrl: './compress.component.css',
+  providers: [CompressService],
 })
-export class HomeComponent {
-  private homeService = inject(HomeService);
+export class CompressComponent {
+  private compressService = inject(CompressService);
 
   protected originalFiles: FileList | null = null;
   protected compressedFiles: CompressedFile[] | null = null;
@@ -79,7 +79,7 @@ export class HomeComponent {
         maxSizeMB: this.compressorOptions.maxSize,
       };
 
-      this.compressedFiles = await this.homeService.compressFile(
+      this.compressedFiles = await this.compressService.compressFile(
         this.originalFiles,
         options,
       );
@@ -95,11 +95,11 @@ export class HomeComponent {
 
   download() {
     if (this.compressedFiles) {
-      this.homeService.downloadFile(this.compressedFiles).then();
+      this.compressService.downloadFile(this.compressedFiles).then();
     }
   }
 
   downloadSingle(file: CompressedFile){
-    this.homeService.downloadFile([file]).then();
+    this.compressService.downloadFile([file]).then();
   }
 }

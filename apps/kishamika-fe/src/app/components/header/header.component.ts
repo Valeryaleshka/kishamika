@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   menuItems = computed(() => {
     return [
-      { title: 'Home', link: '/home' },
+      { title: 'Home', link: '/compress' },
     ];
   });
 }

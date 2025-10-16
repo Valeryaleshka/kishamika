@@ -3,10 +3,10 @@ import imageCompression, { Options } from 'browser-image-compression';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 import { mergeRight } from 'ramda';
-import { CompressedFile } from './home.interfaces';
+import { CompressedFile } from './compress.interfaces';
 
 @Injectable()
-export class HomeService {
+export class CompressService {
   private readonly imageCompress = imageCompression;
   private readonly renderer = inject(Renderer2);
 
