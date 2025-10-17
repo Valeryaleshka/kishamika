@@ -19,6 +19,8 @@ import { CompressService } from './compress.service';
 import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
 import { CenterDirective } from '../../derectives/center-content.directive';
 import { DropareaDirective } from '../../derectives/droparea.directive';
+import { NzModalModule} from 'ng-zorro-antd/modal';
+import { mergeRight } from 'ramda';
 
 @Component({
   selector: 'app-compress',
@@ -40,9 +42,10 @@ import { DropareaDirective } from '../../derectives/droparea.directive';
     AppImageSrcPipe,
     AppImageSizePipe,
     NzSpinComponent,
+    NzModalModule,
   ],
   templateUrl: './compress.component.html',
-  styleUrl: './compress.component.css',
+  styleUrl: './compress.component.less',
   providers: [CompressService],
 })
 export class CompressComponent {
@@ -52,6 +55,12 @@ export class CompressComponent {
   protected compressedFiles: CompressedFile[] | null = null;
 
   protected compressInProgress = false;
+  protected showModal = false;
+
+  protected currentCompressorOptions: CompressorOptions = {
+    maxSize: 1,
+    compressorQuality: 50,
+  };
 
   protected compressorOptions: CompressorOptions = {
     maxSize: 1,
@@ -99,5 +108,16 @@ export class CompressComponent {
 
   downloadSingle(file: CompressedFile) {
     this.compressService.downloadFile([file]).then();
+  }
+
+  handleOk(){
+    this.showModal = false;
+    this.currentCompressorOptions = mergeRight(this.currentCompressorOptions, this.compressorOptions);
+    this.compress();
+  }
+
+  handleCancel(){
+    this.showModal = false;
+    this.compressorOptions = mergeRight(this.compressorOptions, this.currentCompressorOptions);
   }
 }

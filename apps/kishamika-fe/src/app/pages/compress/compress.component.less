@@ -12,8 +12,8 @@
 }
 
 .image-preview {
-  max-width: 500px;
-  max-height: 500px;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
   padding: 10px;
@@ -27,9 +27,12 @@
   flex: 1;
 }
 
+.settings-wrapper {
+  padding: 20px;
+}
+
 .sidebar {
-  flex: 0 0 300px;
-  width: 300px;
+  width: 150px;
 }
 
 .file-drop {
@@ -40,6 +43,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 500px;
-  height: 300px;
+  min-height: 200px;
+  max-height: 90%;
+  min-width: 80%;
 }

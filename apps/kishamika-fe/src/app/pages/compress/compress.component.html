@@ -1,5 +1,6 @@
+<nz-spin [nzSpinning]="compressInProgress" nzTip="Loading...">
 <app-content-wrapper centerContent>
-  <nz-spin [nzSpinning]="compressInProgress" nzTip="Loading...">
+
     @if (!originalFiles) {
       <div class="file-drop" droparea (click)="imgFileInput.click()">
         <b>Choose a file</b>&nbsp;or drag it here
@@ -15,6 +16,12 @@
     }
 
     @if (originalFiles) {
+      <div class="settings-wrapper">
+        <h2>Current Settings</h2>
+        <div> Max Size MB: {{currentCompressorOptions.maxSize}}</div>
+        <div> Quality rate: {{currentCompressorOptions.maxSize}} / 100</div>
+        <button nz-button (click)="showModal = true">Change Settings</button>
+      </div>
       <div class="block-wrapper">
         <div class="image-wrapper">
           <div class="image-container">
@@ -60,38 +67,40 @@
             }
           </div>
         </div>
-
-        <div class="sidebar">
-          <nz-form-item>
-            <nz-form-label nzFor="name">Max Size MB</nz-form-label>
-            <nz-form-control>
-              <input
-                nz-input
-                type="number"
-                min="0"
-                max="100"
-                [(ngModel)]="compressorOptions.maxSize"
-                id="name"
-                placeholder="Max Size"
-              />
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <nz-form-label nzFor="name">Quality rate ( 1 - 100 )</nz-form-label>
-            <nz-form-control>
-              <input
-                nz-input
-                type="number"
-                min="1"
-                max="100"
-                [(ngModel)]="compressorOptions.compressorQuality"
-                id="name"
-                placeholder="Quality"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
       </div>
     }
-  </nz-spin>
 </app-content-wrapper>
+</nz-spin>
+
+<nz-modal [(nzVisible)]="showModal" nzTitle="Settings" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <div *nzModalContent>
+  <nz-form-item>
+    <nz-form-label nzFor="name">Max Size MB</nz-form-label>
+    <nz-form-control>
+      <input
+        nz-input
+        type="number"
+        min="0"
+        max="100"
+        [(ngModel)]="compressorOptions.maxSize"
+        id="name"
+        placeholder="Max Size"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name">Quality rate ( 1 - 100 )</nz-form-label>
+    <nz-form-control>
+      <input
+        nz-input
+        type="number"
+        min="1"
+        max="100"
+        [(ngModel)]="compressorOptions.compressorQuality"
+        id="name"
+        placeholder="Quality"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  </div>
+</nz-modal>
