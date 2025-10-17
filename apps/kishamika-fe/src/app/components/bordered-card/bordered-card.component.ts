@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './bordered-card.component.html',
   styleUrl: './bordered-card.component.less',
 })
-export class BorderedCardComponent {
-}
+export class BorderedCardComponent {}

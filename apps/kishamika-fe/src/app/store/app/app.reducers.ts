@@ -20,10 +20,10 @@ export const appReducer = createReducer(
   on(setTheme, (state, { theme }) => ({ ...state, theme: theme ?? 'light' })),
   on(toggleTheme, (state) => ({
     ...state,
-    theme: state.theme === 'light' ? 'dark' : 'light' as themeType,
+    theme: state.theme === 'light' ? 'dark' : ('light' as themeType),
   })),
   on(setUser, (state, { user }) => ({
     ...state,
     user: user,
-  }))
+  })),
 );

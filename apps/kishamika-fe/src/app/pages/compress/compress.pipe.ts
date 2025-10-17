@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'fileSrc',
 })
 export class AppImageSrcPipe implements PipeTransform {
-
   transform(value: File): string {
     return URL.createObjectURL(value);
   }
@@ -18,4 +17,3 @@ export class AppImageSizePipe implements PipeTransform {
     return value.size / 1024 / 1024;
   }
 }
-

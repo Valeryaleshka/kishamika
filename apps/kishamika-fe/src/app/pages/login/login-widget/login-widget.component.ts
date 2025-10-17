@@ -1,11 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 
 import { HeaderMenuComponent } from '../../../components/header-menu/header-menu.component';
-import { UserService } from '../../../services/user/user.service';
-import { Store } from '@ngrx/store';
-import { selectUser } from '../../../store/app/app.selectors';
 import { CenterDirective } from '../../../derectives/center-content.directive';
+import { UserService } from '../../../services/user/user.service';
+import { selectUser } from '../../../store/app/app.selectors';
 
 @Component({
   selector: 'app-login-widget',

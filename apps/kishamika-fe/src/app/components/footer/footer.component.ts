@@ -1,11 +1,12 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectTheme } from '../../store/app/app.selectors';
-import { AsyncPipe } from '@angular/common';
+
 import { setTheme } from '../../store/app/app.actions';
+import { selectTheme } from '../../store/app/app.selectors';
 import { AppSelectComponent } from '../app-select/app-select.component';
 import { ISelect } from '../app-select/app-select.types';
 

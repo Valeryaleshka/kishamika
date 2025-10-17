@@ -1,6 +1,8 @@
 @if (currentUser()) {
   <div centerContent>
-    <div class="header-text">Hello, {{currentUser()?.name ?? currentUser()?.email}}</div>
+    <div class="header-text">
+      Hello, {{ currentUser()?.name ?? currentUser()?.email }}
+    </div>
     <button nz-button nzGhost (click)="logout()">Logout</button>
   </div>
 } @else {

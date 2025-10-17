@@ -1,82 +1,97 @@
 <app-content-wrapper centerContent>
   <nz-spin [nzSpinning]="compressInProgress" nzTip="Loading...">
-  @if (!originalFiles) {
-    <div class="file-drop" droparea (click)="imgFileInput.click()">
-      <b>Choose a file</b>&nbsp;or drag it here
-      <input
-        accept="image/png"
-        hidden
-        type="file"
-        multiple
-        #imgFileInput
-        (change)="uploadFiles($event)"
-      />
-    </div>
-  }
+    @if (!originalFiles) {
+      <div class="file-drop" droparea (click)="imgFileInput.click()">
+        <b>Choose a file</b>&nbsp;or drag it here
+        <input
+          accept="image/png"
+          hidden
+          type="file"
+          multiple
+          #imgFileInput
+          (change)="uploadFiles($event)"
+        />
+      </div>
+    }
 
-  @if (originalFiles) {
-    <div class="block-wrapper">
-      <div class="image-wrapper">
-        <div class="image-container">
-          @for(item of originalFiles; track item.name){
-            <div>
-              <img class="image-preview" [src]="item | fileSrc" alt="Uploaded Image" />
-              <div>Original Size {{ item | fileSize | number: "1.0-2" }} MB</div>
-            </div>
-          }
-
-          <button nz-button nzType="primary" (click)="cleanFiles()">
-            Delete
-          </button>
-
-          <button nz-button (click)="compress()">Compress</button>
-
-          @if (compressedFiles) {
-            @for(item of compressedFiles; track item.compressedUrl){
+    @if (originalFiles) {
+      <div class="block-wrapper">
+        <div class="image-wrapper">
+          <div class="image-container">
+            @for (item of originalFiles; track item.name) {
               <div>
-                <img class="image-preview" [src]="item.compressedUrl" alt="Uploaded Image" />
-                <div>Original Size {{ item.compressedFile | fileSize | number: "1.0-2" }} MB</div>
+                <img
+                  class="image-preview"
+                  [src]="item | fileSrc"
+                  alt="Uploaded Image"
+                />
+                <div>
+                  Original Size {{ item | fileSize | number: "1.0-2" }} MB
+                </div>
               </div>
-              @if(compressedFiles.length > 1){
-                <button nz-button (click)="downloadSingle(item)">Download Single</button>
-              }
             }
-            <button nz-button (click)="download()">Download</button>
-          }
+
+            <button nz-button nzType="primary" (click)="cleanFiles()">
+              Delete
+            </button>
+
+            <button nz-button (click)="compress()">Compress</button>
+
+            @if (compressedFiles) {
+              @for (item of compressedFiles; track item.compressedUrl) {
+                <div>
+                  <img
+                    class="image-preview"
+                    [src]="item.compressedUrl"
+                    alt="Uploaded Image"
+                  />
+                  <div>
+                    Original Size
+                    {{ item.compressedFile | fileSize | number: "1.0-2" }} MB
+                  </div>
+                </div>
+                @if (compressedFiles.length > 1) {
+                  <button nz-button (click)="downloadSingle(item)">
+                    Download Single
+                  </button>
+                }
+              }
+              <button nz-button (click)="download()">Download</button>
+            }
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <nz-form-item>
+            <nz-form-label nzFor="name">Max Size MB</nz-form-label>
+            <nz-form-control>
+              <input
+                nz-input
+                type="number"
+                min="0"
+                max="100"
+                [(ngModel)]="compressorOptions.maxSize"
+                id="name"
+                placeholder="Max Size"
+              />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzFor="name">Quality rate ( 1 - 100 )</nz-form-label>
+            <nz-form-control>
+              <input
+                nz-input
+                type="number"
+                min="1"
+                max="100"
+                [(ngModel)]="compressorOptions.compressorQuality"
+                id="name"
+                placeholder="Quality"
+              />
+            </nz-form-control>
+          </nz-form-item>
         </div>
       </div>
-
-      <div class="sidebar">
-        <nz-form-item>
-          <nz-form-label nzFor="name">Max Size MB</nz-form-label>
-          <nz-form-control>
-            <input
-              nz-input
-              type="number"
-              min="0"
-              max="100"
-              [(ngModel)]="compressorOptions.maxSize"
-              id="name"
-              placeholder="Max Size"
-            />
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label nzFor="name">Quality rate ( 1 - 100 )</nz-form-label>
-          <nz-form-control>
-            <input
-              nz-input
-              type="number"
-              min="1"
-              max="100"
-              [(ngModel)]="compressorOptions.compressorQuality"
-              id="name"
-              placeholder="Quality"
-            />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </div>
-  }
+    }
   </nz-spin>
 </app-content-wrapper>

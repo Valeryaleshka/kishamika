@@ -4,8 +4,8 @@ import { CanActivateFn } from '@angular/router';
 import { notGithubGuard } from './not-github.guard';
 
 describe('notGithubGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => notGithubGuard(...guardParameters));
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => notGithubGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

@@ -1,9 +1,9 @@
 export interface CompressedFile {
-  compressedFile: File,
-  compressedUrl: string,
+  compressedFile: File;
+  compressedUrl: string;
 }
 
 export interface CompressorOptions {
-  maxSize: number,
-  compressorQuality: number
+  maxSize: number;
+  compressorQuality: number;
 }

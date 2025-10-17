@@ -5,4 +5,3 @@ export function dataUrlSize(dataUrl: string): number {
   const padding = (base64String.match(/=+$/) || [''])[0].length;
   return (base64String.length * 3) / 4 - padding;
 }
-

@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import imageCompression, { Options } from 'browser-image-compression';
 // @ts-ignore: JSZip has no types in this workspace
 import JSZip from 'jszip';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 export interface CompressionOptions {
   maxSize: number;
@@ -29,23 +29,30 @@ export interface CompressionProgress {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ImageCompressionService {
   private imageCompress = imageCompression;
   private messageService = inject(NzMessageService);
 
-  async compressSingleFile(file: File, options: CompressionOptions): Promise<ProcessedFile> {
+  async compressSingleFile(
+    file: File,
+    options: CompressionOptions,
+  ): Promise<ProcessedFile> {
     const compressionOptions = this.getCompressionOptions(options);
 
     try {
-      const compressedImage = await this.imageCompress(file, compressionOptions);
-      const preview = await this.imageCompress.getDataUrlFromFile(compressedImage);
+      const compressedImage = await this.imageCompress(
+        file,
+        compressionOptions,
+      );
+      const preview =
+        await this.imageCompress.getDataUrlFromFile(compressedImage);
 
       return {
         original: file,
         compressed: compressedImage,
-        preview: preview
+        preview: preview,
       };
     } catch (error) {
       console.error('Compression error:', error);
@@ -56,7 +63,7 @@ export class ImageCompressionService {
   async compressBulkFiles(
     files: File[],
     options: CompressionOptions,
-    onProgress?: (progress: CompressionProgress) => void
+    onProgress?: (progress: CompressionProgress) => void,
   ): Promise<ProcessedFile[]> {
     const processedFiles: ProcessedFile[] = [];
     const totalFiles = files.length;
@@ -69,7 +76,7 @@ export class ImageCompressionService {
           current: i + 1,
           total: totalFiles,
           percentage: ((i + 1) / totalFiles) * 100,
-          currentFileName: file.name
+          currentFileName: file.name,
         });
       }
 
@@ -93,8 +100,15 @@ export class ImageCompressionService {
       maxSizeMB: options.maxSize,
     };
 
-    if (options.useExactResolution && options.exactWidth > 0 && options.exactHeight > 0) {
-      compressionOptions.maxWidthOrHeight = Math.max(options.exactWidth, options.exactHeight);
+    if (
+      options.useExactResolution &&
+      options.exactWidth > 0 &&
+      options.exactHeight > 0
+    ) {
+      compressionOptions.maxWidthOrHeight = Math.max(
+        options.exactWidth,
+        options.exactHeight,
+      );
     }
 
     if (options.useExactFileSize && options.exactFileSize > 0) {
@@ -123,7 +137,10 @@ export class ImageCompressionService {
   downloadFile(fileData: ProcessedFile, filename?: string): void {
     const link = document.createElement('a');
     link.setAttribute('type', 'hidden');
-    link.setAttribute('download', filename || `compressed_${fileData.original.name}`);
+    link.setAttribute(
+      'download',
+      filename || `compressed_${fileData.original.name}`,
+    );
     link.href = fileData.preview;
     link.click();
   }
@@ -134,7 +151,10 @@ export class ImageCompressionService {
     });
   }
 
-  async downloadFilesAsZip(files: ProcessedFile[], zipFilename?: string): Promise<void> {
+  async downloadFilesAsZip(
+    files: ProcessedFile[],
+    zipFilename?: string,
+  ): Promise<void> {
     try {
       const zip = new JSZip();
 
@@ -147,12 +167,16 @@ export class ImageCompressionService {
 
       const link = document.createElement('a');
       link.href = URL.createObjectURL(zipBlob);
-      link.download = zipFilename || `compressed_images_${new Date().toUTCString().split('T')[0]}.zip`;
+      link.download =
+        zipFilename ||
+        `compressed_images_${new Date().toUTCString().split('T')[0]}.zip`;
       link.click();
 
       URL.revokeObjectURL(link.href);
 
-      this.messageService.success(`Downloaded ${files.length} compressed images as ZIP file`);
+      this.messageService.success(
+        `Downloaded ${files.length} compressed images as ZIP file`,
+      );
     } catch (error) {
       console.error('Error creating ZIP file:', error);
       this.messageService.error('Failed to create ZIP file');

@@ -1,7 +1,7 @@
-import {DecimalPipe} from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Options} from 'browser-image-compression';
+import { Options } from 'browser-image-compression';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
 import {
@@ -13,13 +13,12 @@ import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { NzSpinComponent } from 'ng-zorro-antd/spin';
 
-import {CompressedFile, CompressorOptions} from './compress.interfaces';
-import {AppImageSizePipe, AppImageSrcPipe} from './compress.pipe';
+import { CompressedFile, CompressorOptions } from './compress.interfaces';
+import { AppImageSizePipe, AppImageSrcPipe } from './compress.pipe';
 import { CompressService } from './compress.service';
 import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
 import { CenterDirective } from '../../derectives/center-content.directive';
 import { DropareaDirective } from '../../derectives/droparea.directive';
-
 
 @Component({
   selector: 'app-compress',
@@ -57,8 +56,7 @@ export class CompressComponent {
   protected compressorOptions: CompressorOptions = {
     maxSize: 1,
     compressorQuality: 50,
-  }
-
+  };
 
   uploadFiles(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -88,7 +86,7 @@ export class CompressComponent {
     }
   }
 
-  cleanFiles(){
+  cleanFiles() {
     this.originalFiles = null;
     this.compressedFiles = null;
   }
@@ -99,7 +97,7 @@ export class CompressComponent {
     }
   }
 
-  downloadSingle(file: CompressedFile){
+  downloadSingle(file: CompressedFile) {
     this.compressService.downloadFile([file]).then();
   }
 }

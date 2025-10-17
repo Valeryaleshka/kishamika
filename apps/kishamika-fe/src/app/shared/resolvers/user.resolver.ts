@@ -4,9 +4,9 @@ import { Observable, of } from 'rxjs';
 import { catchError, switchMap, take } from 'rxjs/operators';
 
 import { User } from '../../../../../kishamika-be/src/auth/services/users.service';
+import { environment } from '../../../../environments/environment';
 import { ApiService } from '../../services/api/api.service';
 import { UserService } from '../../services/user/user.service';
-import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserResolver implements Resolve<boolean> {
@@ -14,7 +14,7 @@ export class UserResolver implements Resolve<boolean> {
   private userService = inject(UserService);
 
   resolve(): Observable<boolean> {
-    if(!environment.github){
+    if (!environment.github) {
       return this.apiService.get<User>('auth/me').pipe(
         take(1),
         switchMap((user) => {
@@ -32,6 +32,5 @@ export class UserResolver implements Resolve<boolean> {
     }
 
     return of(true);
-
   }
 }

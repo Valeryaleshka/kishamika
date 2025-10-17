@@ -6,10 +6,10 @@ export const selectThemeState = createFeatureSelector<ThemeState>('theme');
 
 export const selectTheme = createSelector(
   selectThemeState,
-  (state) => state.theme
+  (state) => state.theme,
 );
 
 export const selectUser = createSelector(
   selectThemeState,
-  (state) => state.user
+  (state) => state.user,
 );

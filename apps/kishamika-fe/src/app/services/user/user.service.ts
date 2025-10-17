@@ -23,7 +23,7 @@ export class UserService {
   private api = inject(ApiService);
   private destroyRef = inject(DestroyRef);
 
-  public loginUser(user: User ) {
+  public loginUser(user: User) {
     this.store.dispatch(setUser({ user: user }));
   }
 

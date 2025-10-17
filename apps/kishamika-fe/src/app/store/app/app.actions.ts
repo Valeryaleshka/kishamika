@@ -4,11 +4,11 @@ import { User } from '../../../../../kishamika-be/src/auth/services/users.servic
 
 export const setTheme = createAction(
   '[Theme] Set Theme',
-  props<{ theme: 'light' | 'dark' | null}>(),
+  props<{ theme: 'light' | 'dark' | null }>(),
 );
 
 export const toggleTheme = createAction('[Theme] Toggle Theme');
 export const setUser = createAction(
   '[Theme] Set user',
-  props<{ user: User | null }>()
+  props<{ user: User | null }>(),
 );

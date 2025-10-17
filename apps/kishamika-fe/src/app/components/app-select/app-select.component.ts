@@ -1,8 +1,18 @@
-import { Component, EventEmitter, forwardRef, HostBinding, Input, Output } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  HostBinding,
+  Input,
+  Output,
+} from '@angular/core';
+import {
+  ControlValueAccessor,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 
 import { ISelect } from './app-select.types';
-
 
 @Component({
   selector: 'app-select',
@@ -18,7 +28,9 @@ import { ISelect } from './app-select.types';
     },
   ],
 })
-export class AppSelectComponent<T = string | number> implements ControlValueAccessor {
+export class AppSelectComponent<T = string | number>
+  implements ControlValueAccessor
+{
   @HostBinding('class.ghost') @Input() ghost: boolean = false;
   @Input() options: ISelect<string>[] = [];
   @Input() disabled: boolean = false;

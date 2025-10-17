@@ -1,10 +1,8 @@
 import { Routes } from '@angular/router';
 
+import { notGithubGuard } from './guards/not-github.guard';
 import { RootComponent } from './pages/root/root.component';
 import { UserResolver } from './shared/resolvers/user.resolver';
-import {notGithubGuard} from "./guards/not-github.guard";
-
-
 
 export const routes: Routes = [
   {
@@ -18,7 +16,9 @@ export const routes: Routes = [
       {
         path: 'compress',
         loadComponent: () =>
-          import('./pages/compress/compress.component').then((m) => m.CompressComponent),
+          import('./pages/compress/compress.component').then(
+            (m) => m.CompressComponent,
+          ),
       },
       {
         path: 'about',
