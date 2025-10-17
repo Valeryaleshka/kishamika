@@ -12,7 +12,7 @@
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "build:prod": "ng build --configuration production",
-    "build:github": "ng build --configuration production",
+    "build:github": "ng build --configuration github",
     "github-deploy": "npx angular-cli-ghpages --dir=dist/kika-project/browser --no-silent",
     "clean": "rm -rf dist"
   },

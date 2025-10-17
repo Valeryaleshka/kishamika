@@ -2,6 +2,9 @@ import { Routes } from '@angular/router';
 
 import { RootComponent } from './pages/root/root.component';
 import { UserResolver } from './shared/resolvers/user.resolver';
+import {notGithubGuard} from "./guards/not-github.guard";
+
+
 
 export const routes: Routes = [
   {
@@ -24,6 +27,7 @@ export const routes: Routes = [
       },
       {
         path: 'login',
+        canActivate: [notGithubGuard],
         loadComponent: () =>
           import('./pages/login/login-page/login-page.component').then(
             (m) => m.LoginPageComponent,
@@ -31,6 +35,7 @@ export const routes: Routes = [
       },
       {
         path: 'register',
+        canActivate: [notGithubGuard],
         data: { register: true },
         loadComponent: () =>
           import('./pages/login/login-page/login-page.component').then(

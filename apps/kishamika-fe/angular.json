@@ -39,6 +39,28 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5000kB",
+                  "maximumError": "10MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "github": {
+              "fileReplacements": [
+                {
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.development.ts"
+                }
+              ],
               "baseHref": "/kishamika/",
               "budgets": [
                 {
