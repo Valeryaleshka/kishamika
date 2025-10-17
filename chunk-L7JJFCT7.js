@@ -1,1 +1,0 @@
-import{fc as o,gc as p,sb as t}from"./chunk-Y7SIDLCO.js";var a=["*"],r=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=t({type:n,selectors:[["app-content-wrapper"]],ngContentSelectors:a,decls:1,vars:0,template:function(e,s){e&1&&(o(),p(0))},styles:["[_nghost-%COMP%]{display:flex;flex-direction:column;padding:10px}"]})};export{r as a};
